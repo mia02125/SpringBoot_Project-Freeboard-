@@ -40,4 +40,4 @@
 
 ### 01.13
 ## 게시물 작성일자 구현   +  카카오맵 구현하기(미완성)
-![](
+![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/writeTime.PNG)
