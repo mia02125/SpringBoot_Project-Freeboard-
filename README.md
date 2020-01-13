@@ -7,7 +7,10 @@
 #### ㆍ Thymeleaf
 
 ### MVC방식으로 구현
-
+##### Route -> Controller -> View로 연결되는 과정 학습
+##### Route에서 app/HTTP/Controller경로와 사용 function을 지정
+##### app/HTTP/Controller에서 Function를 만들어 resources/view/보여줄 파일로 전송
+##### view 폴더에 파일에서 최종적으로 출력
 
 ### 01.06
 ## 가입페이지 로그입 페이지 링크 달기 
