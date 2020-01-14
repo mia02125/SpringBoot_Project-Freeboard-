@@ -1,4 +1,17 @@
 # SpringBoot(게시판만들기)
+
+### * SpringBoot 초기 설정 
+#### ㆍ Lombok(getter & setter 자동 설정) 
+#### ㆍ Spring Data JPA 
+#### ㆍ Spring Web
+#### ㆍ Thymeleaf
+
+### * MVC방식으로 구현
+##### ㆍ Route -> Controller -> View로 연결되는 과정 학습
+##### ㆍ Route에서 app/HTTP/Controller경로와 사용 function을 지정
+##### ㆍ app/HTTP/Controller에서 Function를 만들어 resources/view/보여줄 파일로 전송
+##### ㆍ view 폴더에 파일에서 최종적으로 출력
+
 ### 01.06
 ## 가입페이지 로그입 페이지 링크 달기 
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic.PNG)
@@ -25,4 +38,6 @@
 <br>
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/write.PNG)
 
-
+### 01.13
+## 게시물 작성일자 구현   +  카카오맵 구현하기(미완성)
+![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/writeTime.PNG)
