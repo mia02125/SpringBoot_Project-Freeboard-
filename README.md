@@ -41,3 +41,17 @@
 ### 01.13
 ## 게시물 작성일자 구현   +  카카오맵 구현하기(미완성)
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/writeTime.PNG)
+
+
+### 01.15
+## 게시물 삭제 구현 + 레이아웃 수정 + JS사용하여 alert이벤트 발생 
+<code>
+  @RequestMapping(value = "/{freeId}/delete", method = {RequestMethod.GET,RequestMethod.POST}) // GET과 POST
+		public String getDelete(@PathVariable Long freeId) {
+			Freeboard freeboard = freeboardRepository.findByFreeId(freeId); //Repository에서 Id를 받아온다
+			freeboardWriteService.delete(freeboard.getFreeId()); //파라미터값 제대로 가져오자!!!
+			//freeboardWriteService로 부터 delete메소드를 받고 freeboard생성자의 FreeId값을 가져온다.
+			return "redirect:/freeboard"; // freeboard 창으로 이동 
+		}
+</code>
+  
