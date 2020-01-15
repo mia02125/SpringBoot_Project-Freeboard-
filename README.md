@@ -45,6 +45,7 @@
 
 ### 01.15
 ## 게시물 삭제 구현 + 레이아웃 수정 + JS사용하여 alert이벤트 발생 
+#### freeboardController(컨트롤러)
 ```java
   @RequestMapping(value = "/{freeId}/delete", method = {RequestMethod.GET,RequestMethod.POST}) 
 		// GET과 POST를 동시에 받아옴 
@@ -56,4 +57,12 @@
 			return "redirect:/freeboard"; // freeboard 창으로 이동 
 		}
 ```
-  
+#### freeboardWriteService
+
+```java
+public void delete(Long freeId) {//delete하기 위한 컨트롤러를 위한 서비스 
+		freeboardRepository.deleteById(freeId); 
+		// freeboardRepository로부터 Id를 지우는 함수를 받는다.
+		// freeboardController로 상속 
+	}
+```
