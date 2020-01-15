@@ -45,13 +45,15 @@
 
 ### 01.15
 ## 게시물 삭제 구현 + 레이아웃 수정 + JS사용하여 alert이벤트 발생 
-<code>
-  @RequestMapping(value = "/{freeId}/delete", method = {RequestMethod.GET,RequestMethod.POST}) // GET과 POST
+```java
+  @RequestMapping(value = "/{freeId}/delete", method = {RequestMethod.GET,RequestMethod.POST}) 
+		// GET과 POST를 동시에 받아옴 
 		public String getDelete(@PathVariable Long freeId) {
-			Freeboard freeboard = freeboardRepository.findByFreeId(freeId); //Repository에서 Id를 받아온다
+			Freeboard freeboard = freeboardRepository.findByFreeId(freeId); 
+			//Repository에서 Id를 받아온다
 			freeboardWriteService.delete(freeboard.getFreeId()); //파라미터값 제대로 가져오자!!!
 			//freeboardWriteService로 부터 delete메소드를 받고 freeboard생성자의 FreeId값을 가져온다.
 			return "redirect:/freeboard"; // freeboard 창으로 이동 
 		}
-</code>
+```
   
