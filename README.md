@@ -66,3 +66,17 @@ public void delete(Long freeId) {//delete하기 위한 컨트롤러를 위한 �
 		// freeboardController로 상속 
 	}
 ```
+
+#### FreeboardRepository
+```java
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.example.model.Freeboard;
+
+
+@Repository
+public interface FreeboardRepository extends JpaRepository<Freeboard, Long>{
+	Freeboard findByFreeId(Long freeId);
+	Freeboard findByContentAndTitle(String title, String content);
+}
+```java
