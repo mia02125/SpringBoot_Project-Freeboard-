@@ -19,10 +19,100 @@
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic_1.PNG)
 <br>
 ### 01.07
-## 회원가입창 구현 + DB(MySQL)에 삽입 
-![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic1.PNG)
 ## 비밀번호 암호화(SHA-256 알고리즘) 
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic2.PNG)
+
+#### 패스워드 암호화(SHA-256알고리즘)
+```java
+@Service
+public class UserPasswordHashClass {
+	public String getSHA256(String plainText) {
+		String shaString = "";
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256"); //MessageDigest : 암호화하기 위한 클래스
+			digest.update(plainText.getBytes()); //Byte를 얻어내 저장
+			//getBytes() : encoding/decoding하기위한 메소드
+			byte byteData[] = digest.digest();
+			StringBuffer buffer = new StringBuffer();
+			for(int i = 0; i < byteData.length; i++) { 
+				buffer.append(Integer.toString((byteData[i] & 0xff) * 0x100, 16).substring(1));
+			}
+			shaString = buffer.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			shaString = null;
+		}
+		
+		return shaString;
+		
+	}
+}
+```
+
+
+## 회원가입창 구현 + DB(MySQL)에 삽입 
+![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic1.PNG)
+
+#### joinService(회원가입 Service)
+```java
+@Service
+public class joinService {
+	
+	@Autowired
+	private UsersRepository usersRepository; //유저값 저장하는 곳
+	
+	@Autowired
+	private UserPasswordHashClass userPasswordHashClass; 
+	
+	public String joinUser(String userId, String userPw, String userName) { 
+		if(userId.equals("") || userPw.equals("") || userName.equals("")) { 
+			return "join";
+		} else { 
+			Users users = new Users();
+			users.setUserid(userId);
+			String hashPw = userPasswordHashClass.getSHA256(userPw);
+			//암호화
+			users.setPassword(hashPw);
+			users.setUsername(userName);
+			usersRepository.save(users);
+			return "index";
+		}
+	}
+}
+```
+####UserController(Login.html과 join.html의 컨트롤러)
+```java
+public class UsersController {
+	
+	
+	@Autowired  //Service를 자동적으로 사용하게끔함!!!!!
+	private joinService joinService; 
+	
+	@Autowired
+	private loginService loginService;
+ 
+	//회원가입 요청받은 값
+	@PostMapping("/joinRequest")
+	public String joinRequest(@RequestParam Map<String, String> paramMap) {
+		String userId = paramMap.get("userid"); // join.html의 name값을 가져옴
+		String userPw = paramMap.get("password"); // join.html의 name값을 가져옴
+		String userName = paramMap.get("username");// join.html의 name값을 가져옴
+		String page = joinService.joinUser(userId, userPw, userName);
+		return page;
+	}
+	
+	//로그인 요청받은 값
+	@PostMapping("/loginRequest")
+	public String loginRequest(@RequestParam Map<String, String> paramMap) {
+		String userId = paramMap.get("userid"); //login.html의 name값을 가져옴
+		String userPw = paramMap.get("password"); //login.html의 name값을 가져옴
+		String page = loginService.login(userId, userPw);
+		return page;	
+	}
+
+}
+```
+
 <br>
 ### 01.08
 ## 게시판 글쓰기 
