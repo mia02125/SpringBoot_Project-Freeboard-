@@ -233,5 +233,5 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
 	}
 ```
 
-#### 카카오맵 구현 
+## 카카오맵 구현 
 ![](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/map.PNG)
