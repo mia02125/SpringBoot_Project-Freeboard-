@@ -80,7 +80,7 @@ public class joinService {
 	}
 }
 ```
-####UserController(Login.html과 join.html의 컨트롤러)
+#### UserController(Login.html과 join.html의 컨트롤러)
 ```java
 public class UsersController {
 	
