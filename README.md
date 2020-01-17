@@ -178,29 +178,22 @@ public interface FreeboardRepository extends JpaRepository<Freeboard, Long>{
 #### freeboardUpdatePage.html
 ```html
 <div class="container">
-						<!-- new ArrayList<Freeboard>()의 boardList의 내용을 board 이라함  -->
-						<form th:attr = "action=@{|/${freeboardInfo.freeId}/update|}" method="post">
-							
-							<div class="form-group">
-								<label for="subject"><strong>제목</strong></label> <input
-									style="width: 400px" placeholder="제목" type="text"
-									class="form-control" name="title" />
-							</div>
-							<div class="form-group">
-								<label for="content"><strong>내용</strong></label>
-								<textarea style="width: 400px" class="form-control"
-									name="content" rows="3"></textarea>
-							</div>
-							<!-- <input type="hidden" th:value="${freeboardInfo.freeId}"
-								name="freeId"> -->
-							<input type="hidden" th:value="${session.loginUser.getUserid()}"
-								name="writer">
-
-							<!-- session.loginUser <= loginService에 있음   -->
-							<button type="submit" class="button button5">작성하기</button>
-						</form>
+			<!-- new ArrayList<Freeboard>()의 boardList의 내용을 board 이라함  -->
+			<form th:attr = "action=@{|/${freeboardInfo.freeId}/update|}" method="post">
 					
+				<div class="form-group">
+					<label for="subject"><strong>제목</strong></label> 
+					<input style="width: 400px" placeholder="제목" type="text" class="form-control" name="title" />
 				</div>
+				<div class="form-group">
+					<label for="content"><strong>내용</strong></label>
+					<textarea style="width: 400px" class="form-control" name="content" rows="3"></textarea>
+				</div>			
+				<input type="hidden" th:value="${session.loginUser.getUserid()}" name="writer">
+				<!-- session.loginUser <= loginService에 있음   -->
+				<button type="submit" class="button button5">작성하기</button>
+			</form>
+</div>
 ```
 
 
