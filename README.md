@@ -112,7 +112,7 @@ public class UsersController {
 }
 ```
 
-<br>
+
 ### 01.08
 ## 게시판 글쓰기 
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic3.PNG)
