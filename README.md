@@ -169,4 +169,74 @@ public interface FreeboardRepository extends JpaRepository<Freeboard, Long>{
 	Freeboard findByFreeId(Long freeId);
 	Freeboard findByContentAndTitle(String title, String content);
 }
+```
+
+### 01.17
+## 게시물 수정 구현 + 수정일자 구현 + 카카오Map API 구현 
+## (초기 작성일자 데이터가 삭제되는 오류 발생...암걸린다.)
+
+#### freeboardUpdatePage.html
+```html
+<div class="container">
+						<!-- new ArrayList<Freeboard>()의 boardList의 내용을 board 이라함  -->
+						<form th:attr = "action=@{|/${freeboardInfo.freeId}/update|}" method="post">
+							
+							<div class="form-group">
+								<label for="subject"><strong>제목</strong></label> <input
+									style="width: 400px" placeholder="제목" type="text"
+									class="form-control" name="title" />
+							</div>
+							<div class="form-group">
+								<label for="content"><strong>내용</strong></label>
+								<textarea style="width: 400px" class="form-control"
+									name="content" rows="3"></textarea>
+							</div>
+							<!-- <input type="hidden" th:value="${freeboardInfo.freeId}"
+								name="freeId"> -->
+							<input type="hidden" th:value="${session.loginUser.getUserid()}"
+								name="writer">
+
+							<!-- session.loginUser <= loginService에 있음   -->
+							<button type="submit" class="button button5">작성하기</button>
+						</form>
+					
+				</div>
+```
+
+
+
+
+
+
+#### freeboardController
+
 ```java
+@PostMapping(value = "/{freeId}/update")
+		public String modify(ModelMap model, @PathVariable Long freeId , Freeboard freeboard, @RequestParam Map<String, String> paramMap) {
+			model.addAttribute("freeboardInfo", freeboardRepository.save(freeboard));
+			String updateDate = paramMap.get("updateDate");
+			String insertDate = paramMap.get("insertDate");
+			freeboardWriteService.update(freeId, updateDate, insertDate);
+			return "redirect:/freeboard"; 
+			//ModelMap : 데이터만 저장 
+			}	
+		
+```
+
+#### frrboardWriteService
+```java
+public void update(@PathVariable("freeId") Long freeId, String updateDate, String insertDate) {
+		try {
+			Freeboard freeboard = freeboardRepository.findByFreeId(freeId);
+			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); 
+			String currentDate = LocalDateTime.now().format(dateFormat); // String값인 현재 시간을 LocalDateTime값으로 변환
+			 
+			freeboard.setUpdateDate(currentDate);
+			freeboard.setInsertDate(insertDate);
+			
+			freeboardRepository.save(freeboard);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+```
