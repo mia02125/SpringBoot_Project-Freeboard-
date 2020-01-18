@@ -1,5 +1,5 @@
 # SpringBoot(게시판만들기)
-
+<a href = "https://github.com/mia02125/-SpringBoot_Project-Freeboard-2/blob/master/README.md">MyBatis로 만든 게시판 보러가기</a>
 ### * SpringBoot 초기 설정 
 #### ㆍ Lombok(getter & setter 자동 설정) 
 #### ㆍ Spring Data JPA 
