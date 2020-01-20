@@ -121,22 +121,22 @@ public class UsersController {
 ## 게시판 글쓰기 
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic3.PNG)
 ### ============================================================
-### 01.10
+## 01.10
 ## 게시판 글목록
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic3_1.PNG)
 ### ============================================================
-### 01.11~01.13
+## 01.11~01.13
 ## 웹페이지 디자인(CSS, JS) + 게시판 페이지 번호 구현
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/read.PNG)
 <br>
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/write.PNG)
 ### ============================================================
-### 01.13
+## 01.13
 ## 게시물 작성일자 구현  +  카카오맵 구현하기(미완성)
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/writeTime.PNG)
 
 ### ============================================================
-### 01.15
+## 01.15
 ## 게시물 삭제 구현 + 레이아웃 수정 + JS사용하여 alert이벤트 발생 
 #### freeboardController(컨트롤러)
 ```java
@@ -150,7 +150,7 @@ public class UsersController {
 			return "redirect:/freeboard"; // freeboard 창으로 이동 
 		}
 ```
-#### freeboardWriteService
+### freeboardWriteService
 
 ```java
 public void delete(Long freeId) {//delete하기 위한 컨트롤러를 위한 서비스 
@@ -160,7 +160,7 @@ public void delete(Long freeId) {//delete하기 위한 컨트롤러를 위한 �
 	}
 ```
 
-#### FreeboardRepository
+### FreeboardRepository
 ```java
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -176,9 +176,9 @@ public interface FreeboardRepository extends JpaRepository<Freeboard, Long>{
 ### ============================================================
 ## 01.17
 ## 게시물 수정 구현 + 수정일자 구현 + 카카오Map API 구현 
-###<a style = "color:blue"> (초기 작성일자 데이터가 삭제되는 오류 발생...암걸린다.)</a>
+### (초기 작성일자 데이터가 삭제되는 오류 발생...암걸린다.)
 
-#### freeboardUpdatePage.html
+### freeboardUpdatePage.html
 ```html
 <div class="container">
 			<!-- new ArrayList<Freeboard>()의 boardList의 내용을 board 이라함  -->
@@ -204,7 +204,7 @@ public interface FreeboardRepository extends JpaRepository<Freeboard, Long>{
 
 
 
-#### freeboardController
+### freeboardController
 
 ```java
 @PostMapping(value = "/{freeId}/update")
@@ -219,7 +219,7 @@ public interface FreeboardRepository extends JpaRepository<Freeboard, Long>{
 		
 ```
 
-#### freeboardWriteService
+### freeboardWriteService
 ```java
 public void update(@PathVariable("freeId") Long freeId, String updateDate, String insertDate) {
 		try {
@@ -237,5 +237,5 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
 	}
 ```
 
-## 카카오맵 구현 
+### 카카오맵 구현 
 ![](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/map.PNG)
