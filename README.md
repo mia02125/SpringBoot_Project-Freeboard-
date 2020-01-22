@@ -285,3 +285,25 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
 
 ```
 
+```html 
+
+<form action = "/joinRequest" method="post">
+    <br>
+    <br>
+    	<table>
+    	<h3><Label>회원가입</Label></h3>
+    		<tr>
+    			<th>
+					<input type = "text" placeholder="아이디" name = "userid" id = "userid"></input><br><br>
+					<input type = "password" placeholder="비밀번호"  name = "password" id = "password"></input><br><br>
+					<input type = "password" placeholder="비밀번호 확인"  name = "passwordCheck" id = "passwordCheck"></input><br><br>
+					<input type = "text" placeholder="이름" name = "username" id = "username"></input><br><br>
+					<input type = "submit"  id ="signUpBtn" value = "가입하기"></input>
+				<th>
+			</tr>
+		</table>
+	</form>
+
+
+```
+
