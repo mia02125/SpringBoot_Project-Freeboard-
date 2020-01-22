@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>게시판</title>
+  <meta http-equiv="Content-Type" content="text/html; charset = UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <!-- ~ 화면 레이아웃(CSS)-->
+  <style>
+  	@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+.snip1504 {
+  font-family: 'Source Sans Pro', sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: #000000;
+  text-align: leaf;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+.snip1504 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+
+.snip1504 img {
+  vertical-align: top;
+  max-width: 100%;
+  backface-visibility: hidden;
+}
+
+.snip1504 figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.snip1504 h3,
+.snip1504 h5 {
+  margin: 0;
+  opacity: 0;
+  letter-spacing: 1px;
+}
+
+.snip1504 h3 {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.snip1504 h5 {
+  font-weight: normal;
+  font-style: italic;
+  color: #888;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+
+.snip1504 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.snip1504:hover > img,
+.snip1504.hover > img {
+  opacity: 0.1;
+}
+
+.snip1504:hover h3,
+.snip1504.hover h3,
+.snip1504:hover h5,
+.snip1504.hover h5 {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+  </style>
+  <!-- ~ 화면 레이아웃(CSS)-->
+  <script type="text/javascript">
+  /* Demo purposes only */
+  $(".hover").mouseleave(
+    function() {
+      $(this).removeClass("hover");
+    }
+  );
+  </script>
+	<script type="text/javascript">
+		function logout_click() { 
+		var logoutComment = confirm("로그아웃하시겠습니까?")
+		if(logoutComment == true) {
+			alert("로그아웃되었습니다.")
+		}
+	}
+	</script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 700px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/MyInfo">MyHOME</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <!-- 상단 메뉴 바 -->
+      </ul>
+      <form action="/logoutRequest" method="post">
+      <ul class="nav navbar-nav navbar-right">
+      	<li th:if="${session.loginUser != null}"><a th:text="${session.loginUser.getUserid()}"><span class="glyphicon glyphicon-log-in"></span></a></li>
+        <li th:if="${session.loginUser == null}"><a href="/joinPage"><span class="glyphicon glyphicon-log-in"></span> SignUp</a></li>
+        <li th:if="${session.loginUser == null}"><a href="/loginPage"><span class="glyphicon glyphicon-log-in"></span> SignIn</a></li>
+        <li th:if="${session.loginUser != null}"><a onclick="logout_click();" href="/logoutPage"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <!-- th:if조건문을 사용하고 필요할때만 나타나게함 -->
+      </ul>
+     </form>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+    </div>
+    <div class="col-sm-8 text-left">
+    <!-- 화면 레이아웃 -->
+				<figure class="snip1504">
+					<img
+						src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Infinite-corridor-bboard.jpeg"
+						alt="board"/>
+					<figcaption>
+						<h3>자유게시판</h3>
+					</figcaption>
+					<a href="/freeboard"></a>
+				</figure>
+				<figure class="snip1504">
+					<img
+						src="https://previews.123rf.com/images/titonz/titonz1506/titonz150600015/41725413-%EC%A0%9C%EA%B8%B0-%EA%B0%80%EC%9E%A5%EC%9E%90%EB%A6%AC-%EB%B9%88-%EC%84%B8%EA%B3%84%EC%A7%80%EB%8F%84-%ED%9D%B0%EC%83%89%EC%9C%BC%EB%A1%9C-%EA%B2%A9%EB%A6%AC.jpg"
+						alt="Map" />
+					<figcaption>
+						<h3>Map</h3>					
+					</figcaption>
+					<a href="/mapPage"></a>
+				</figure>
+				<figure class="snip1504">
+					<img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample60.jpg"
+						alt="sample60" />
+					<figcaption>
+						<h3>Ruby Von Rails</h3>
+						<h5>Photography</h5>
+					</figcaption>
+					<a href="#"></a>
+				</figure>
+
+	<!-- ~화면 레이아웃 -->
+			</div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <p>ADS</p>
+      </div>
+      <div class="well">
+        <p>ADS</p>
+      </div>
+    </div>  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <a href="https://github.com/mia02125/SpringBoot_Project-Freeboard-"><Strong>Git에서 소스 확인하기</Strong></a>
+</footer>
+
+</body>
+</html>
