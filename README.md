@@ -263,5 +263,25 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
 ### =========================================================
 
 ## 01.21
+### 비밀번호 확인창 구현 
+##### -> 그냥 passwordCheck만 추가로 넣어주면 되고 JS로 때려박아서 구현
 
+
+```javascript
+
+<script type="text/javascript">
+  	$(function() { 
+  		$('#passwordCheck').blur(function() { 
+  		if($('#password').val() != $('#passwordCheck').val()) {
+  			if($('#passwordCheck').val()!='') {
+  				alert("비밀번호가 일치하지않습니다.");
+  				$('#passwordCheck').val('');
+  				$('##passwordCheck').blur();
+  			}
+  		}
+  	})
+});
+  </script>
+
+```
 
