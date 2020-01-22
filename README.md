@@ -276,7 +276,7 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
   			if($('#passwordCheck').val()!='') {
   				alert("비밀번호가 일치하지않습니다.");
   				$('#passwordCheck').val('');
-  				$('##passwordCheck').blur();
+  				$('#passwordCheck').blur();
   			}
   		}
   	})
