@@ -285,7 +285,7 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
 
 ```
 
-#### <HTML>
+#### HTML
 
 ```html 
 
