@@ -115,25 +115,37 @@ public class UsersController {
 	}
 }
 ```
+<br>
 
 ### =========================================================
 ## 01.08
 ## 게시판 글쓰기 
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic3.PNG)
+
+<br>
+
 ### =========================================================
 ## 01.10
 ## 게시판 글목록
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic3_1.PNG)
+
+<br>
+
 ### =========================================================
 ## 01.11~01.13
 ## 웹페이지 디자인(CSS, JS) + 게시판 페이지 번호 구현
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/read.PNG)
 <br>
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/write.PNG)
+
+<br>
+
 ### =========================================================
 ## 01.13
 ## 게시물 작성일자 구현  +  카카오맵 구현하기(미완성)
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/writeTime.PNG)
+
+<br>
 
 ### =========================================================
 ## 01.15
