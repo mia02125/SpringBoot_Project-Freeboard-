@@ -262,7 +262,7 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
 
 ### =========================================================
 
-## 01.21
+## 01.22
 ### 비밀번호 확인창 구현 + index페이지 Templates 구현
 ##### -> 그냥 passwordCheck만 추가로 넣어주면 되고 JS로 때려박아서 구현
 
@@ -308,6 +308,14 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
 
 
 ```
+
+<br><br><br>
+
+### =========================================================
+## 01.23
+### 각 서비스 오류 제어 
+
+
 
 <br><br><br>
 
