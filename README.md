@@ -313,7 +313,7 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
 
 ### =========================================================
 ## 01.23
-### 각 서비스 오류 제어 
+### 각 서비스 오류 제어 (try~catch문) 
 
 
 
