@@ -12,16 +12,18 @@
 ##### ㆍ app/HTTP/Controller에서 Function를 만들어 resources/view/보여줄 파일로 전송
 ##### ㆍ view 폴더에 파일에서 최종적으로 출력
 
+<br><br><br>
+
 ## 01.06
 ## 가입페이지 로그입 페이지 링크 달기 
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic.PNG)
 ## 로그인창 구현 
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic_1.PNG)
-<br>
+
+<br><br><br>
 
 ### =========================================================
 
-<br>
 ## 01.07
 ## 비밀번호 암호화(SHA-256 알고리즘) 
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic2.PNG)
@@ -115,25 +117,37 @@ public class UsersController {
 	}
 }
 ```
+<br><br><br>
 
 ### =========================================================
 ## 01.08
 ## 게시판 글쓰기 
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic3.PNG)
+
+<br><br><br>
+
 ### =========================================================
 ## 01.10
 ## 게시판 글목록
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/pic3_1.PNG)
+
+<br><br><br>
+
 ### =========================================================
 ## 01.11~01.13
 ## 웹페이지 디자인(CSS, JS) + 게시판 페이지 번호 구현
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/read.PNG)
 <br>
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/write.PNG)
+
+<br><br><br>
+
 ### =========================================================
 ## 01.13
 ## 게시물 작성일자 구현  +  카카오맵 구현하기(미완성)
 ![create boot](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/writeTime.PNG)
+
+<br><br><br>
 
 ### =========================================================
 ## 01.15
@@ -173,6 +187,9 @@ public interface FreeboardRepository extends JpaRepository<Freeboard, Long>{
 	Freeboard findByContentAndTitle(String title, String content);
 }
 ```
+
+<br><br><br><br><br><br>
+
 ### =========================================================
 ## 01.17
 ## 게시물 수정 구현 + 수정일자 구현 + 카카오Map API 구현 
@@ -239,3 +256,59 @@ public void update(@PathVariable("freeId") Long freeId, String updateDate, Strin
 
 ### 카카오맵 구현 
 ![](https://raw.githubusercontent.com/mia02125/SpringBoot_Project-Freeboard-/master/pic/map.PNG)
+
+<br><br><br>
+
+
+### =========================================================
+
+## 01.21
+### 비밀번호 확인창 구현 + index페이지 Templates 구현
+##### -> 그냥 passwordCheck만 추가로 넣어주면 되고 JS로 때려박아서 구현
+
+#### JavaScript
+```javascript
+
+<script type="text/javascript">
+  	$(function() { 
+  		$('#passwordCheck').blur(function() { 
+  		if($('#password').val() != $('#passwordCheck').val()) {
+  			if($('#passwordCheck').val()!='') {
+  				alert("비밀번호가 일치하지않습니다.");
+  				$('#passwordCheck').val('');
+  				$('#passwordCheck').blur();
+  			}
+  		}
+  	})
+});
+  </script>
+
+```
+
+#### HTML
+
+```html 
+
+<form action = "/joinRequest" method="post">
+    <br>
+    <br>
+    	<table>
+    	<h3><Label>회원가입</Label></h3>
+    		<tr>
+    			<th>
+					<input type = "text" placeholder="아이디" name = "userid" id = "userid"></input><br><br>
+					<input type = "password" placeholder="비밀번호"  name = "password" id = "password"></input><br><br>
+					<input type = "password" placeholder="비밀번호 확인"  name = "passwordCheck" id = "passwordCheck"></input><br><br>
+					<input type = "text" placeholder="이름" name = "username" id = "username"></input><br><br>
+					<input type = "submit"  id ="signUpBtn" value = "가입하기"></input>
+				<th>
+			</tr>
+		</table>
+	</form>
+
+
+```
+
+<br><br><br>
+
+### =========================================================
