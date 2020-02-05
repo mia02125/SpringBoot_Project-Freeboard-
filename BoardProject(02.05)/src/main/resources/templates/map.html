@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>게시판</title>
+  <meta http-equiv="Content-Type" content="text/html; charset = UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- 게시판 CSS -->
+  <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <style type="text/css">
+  
+  /* Button 3 */
+#button-3 .knobs:before
+{
+    content: 'YES';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #03A9F4;
+    border-radius: 50%;
+    transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-3 .checkbox:active + .knobs:before
+{
+    width: 46px;
+    border-radius: 100px;
+}
+
+#button-3 .checkbox:checked:active + .knobs:before
+{
+    margin-left: -26px;
+}
+
+#button-3 .checkbox:checked + .knobs:before
+{
+    content: 'NO';
+    left: 42px;
+    background-color: #F44336;
+}
+
+#button-3 .checkbox:checked ~ .layer
+{
+    background-color: #fcebeb;
+}
+  </style>
+  <style type="text/css">
+$black:#1E1E1E;
+$grey:#CCCCCC;
+$white:#FFFFFF;
+
+body {
+   display:flex;
+   flex-direction:column;
+   align-items:center;
+   justify-content:center;
+   
+   height:100vh;
+   
+   background-color:$grey;
+   span.switcher {
+      position: relative;
+      
+      width:200px;
+      height:50px;
+      border-radius:25px;
+      margin:20px 0;
+      input {
+         appearance: none;
+         
+         position: relative;
+
+         width:200px;
+         height:50px;
+         border-radius:25px;
+
+         background-color:$black;
+         outline:none;
+
+         font-family: 'Oswald', sans-serif;
+         &:before, &:after {
+            z-index:2;
+
+            position: absolute;
+            top:50%;
+            transform:translateY(-50%);
+
+            color:$white;
+         }
+         &:before {
+            content: 'ON';
+            left:20px;
+         }
+         &:after {
+            content: 'OFF';
+            right:20px;
+         }
+      }
+      label {
+         z-index:1;
+         position: absolute;
+         top:10px;
+         bottom:10px;
+         
+         border-radius:20px;
+      }
+      &.switcher-1 {
+         input {
+            transition:.25s -.1s;
+            &:checked {
+               background-color:$white;
+               &:before {
+                  color:$white;
+                  transition: color .5s .2s;
+               }
+               &:after {
+                  color:$grey;
+                  transition: color .5s;
+               }
+               &+label {
+                  left:10px;
+                  right:100px;
+
+                  background:$black;
+                  
+                  transition: left .5s, right .4s .2s;
+               }
+            }
+            &:not(:checked) {
+               background:$black;
+               transition: background .5s -.1s;
+               &:before {
+                  color:$grey;
+                  transition: color .5s;
+               }
+               &:after {
+                  color:$black;
+                  transition: color .5s .2s;
+               }
+               &+label {
+                  left:100px;
+                  right:10px;
+                  
+                  background:$white;
+                  
+                  transition: left .4s .2s, right .5s, background .35s -.1s;
+               }
+            }
+         }
+      }
+      &.switcher-2 {
+         overflow:hidden;
+         input {
+               
+            transition:background-color 0s .5s;
+            &:before {
+               color:$black;
+            }
+            &:after {
+               color:$white;
+            }
+            &:checked {
+               background-color:$white;
+               &+label {
+                  background:$white;
+                  
+                  animation: turn-on .5s ease-out;
+                  
+                  @keyframes turn-on {
+                     0% {
+                        left:100%;
+                     }
+                     100% {
+                        left:0%;
+                     }
+                  }
+               }
+            }
+            &:not(:checked) {
+               background:$black;
+               &+label {
+                  background:$black;
+                  
+                  animation: turn-off .5s ease-out;
+                  
+                  @keyframes turn-off {
+                     0% {
+                        right:100%;
+                     }
+                     100% {
+                        right:0%;
+                     }
+                  }
+               }
+            }
+         }
+         label {
+            top:0px;
+            
+            width:200px;
+            height:50px;
+            border-radius:25px;
+         }
+      }
+   }
+}
+  </style>
+  <!-- 선의 거리 CSS -->
+<style>
+.dot {
+	overflow: hidden;
+	float: left;
+	width: 12px;
+	height: 12px;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');
+}
+
+.dotOverlay {
+	position: relative;
+	bottom: 10px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	border-bottom: 2px solid #ddd;
+	float: left;
+	font-size: 12px;
+	padding: 5px;
+	background: #fff;
+}
+
+.dotOverlay:nth-of-type(n) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.number {
+	font-weight: bold;
+	color: #ee6152;
+}
+
+.dotOverlay:after {
+	content: '';
+	position: absolute;
+	margin-left: -6px;
+	left: 50%;
+	bottom: -8px;
+	width: 11px;
+	height: 8px;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')
+}
+
+.distanceInfo {
+	position: relative;
+	top: 5px;
+	left: 5px;
+	list-style: none;
+	margin: 0;
+}
+
+.distanceInfo .label {
+	display: inline-block;
+	width: 50px;
+}
+
+.distanceInfo:after {
+	content: none;
+}
+</style>
+<!-- ~ 선의 거리 CSS -->
+<style>
+		#container {
+			width: 70%;
+			margin: 0 auto;			/* 가로로 중앙에 배치 */
+			padding-top: 10%;		/* 테두리와 내용 사이의 패딩 여백 */
+		}
+		
+		#list {
+			text-align: center;
+		}
+	
+		#write {
+			text-align: right;
+		}
+		
+		/* Bootstrap 수정 */
+		.table > thead {
+			background-color: #ffffff;
+		}
+		.table > thead > tr > th {
+			text-align: center;
+		}
+		.table-hover > tbody > tr:hover {
+			background-color: #ffffff;
+		}
+		.table > tbody > tr > td {
+			text-align: center;
+		}
+		.table > tbody > tr > #title {
+			text-align: left;
+		}
+		
+		div > #paging {
+			text-align: center;
+		}
+		
+		.hit {
+			animation-name: blink;
+			animation-duration: 1.5s;
+			animation-timing-function: ease;
+			animation-iteration-count: infinite;
+			/* 위 속성들을 한 줄로 표기하기 */
+			/* -webkit-animation: blink 1.5s ease infinite; */
+		}
+		
+		/* 애니메이션 지점 설정하기 */
+		/* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
+		@keyframes blink {
+			from {color: white;}
+			30% {color: yellow;}
+			to {color: red; font-weight: bold;}
+			
+		}
+	</style>
+	
+	
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 700px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: 400px;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+  <style type="text/css">
+  .mapPoint { 
+  	left : 30px;
+  }
+  .button1 { 
+  	top : 2px;
+  	left: 1px;
+  }
+  
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/MyInfo">MyHOME</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+         
+      </ul>
+      <form action="/logoutRequest" method="post">
+      <ul class="nav navbar-nav navbar-right">
+        <li th:if="${session.loginUser == null}"><a href="/joinPage"><span class="glyphicon glyphicon-log-in"></span> SignUp</a></li>
+        <li th:if="${session.loginUser == null}"><a href="/loginPage"><span class="glyphicon glyphicon-log-in"></span> SignIn</a></li>
+        <li th:if="${session.loginUser != null}"><a href="/logoutPage"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <!-- th:if조건문을 사용하고 필요할때만 나타나게함 -->
+      </ul>
+     </form>
+    </div>
+  </div>
+</nav>
+
+	<div class="container-fluid text-center">
+		<div class="row content">
+			<div class="col-sm-2 sidenav">
+				<p>
+					<a href="#">Link</a>
+				</p>
+				<p>
+					<a href="#">Link</a>
+				</p>
+				<p>
+					<a href="#">Link</a>
+				</p>
+			</div>
+			<div class="col-sm-8 text-left">
+				<!-- map -->
+				<br>
+				<div class="mapPoint" id="map" style="width: 685px; height: 600px;"></div>
+				<script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=952cad4da50f1629d8c739a1de6ba34f"></script>
+				<button class="button1" type="button" onclick="javascript:showMarkers();">마크 생성</button>
+				<button class="button1" type="button" onclick="javascript:hideMarkers();">마크 삭제</button>
+				<form action="/mapCrollingRequest" method="post">
+				<button class="button1" type="submit">갱신</button>
+				</form>
+				<script type="text/javascript">
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = { 
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 5 // 지도의 확대 레벨 
+			    }; 
+				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+				</script>
+				<script type="text/javascript" src="js/MyPoint.js"></script>
+				<script type="text/javascript" src="js/multiMarker.js"></script>
+				
+			</div>
+			
+			<div class="col-sm-2 sidenav" >
+				<div class="well">
+					<a th:if="${map.getCurrentStatus()} != null" type="text" th:text="${map.getCurrentStatus()}"></a>
+				</div>
+				<div class="well">
+					<p>ADS</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+</html>
